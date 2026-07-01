@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Contacto | Abogados y Administrador de Fincas en Madrid | Sanperhouse</title>
+  <meta name="description" content="Contacta con Sanperhouse en Madrid: Calle Toledo 107, 28005. Teléfono 91 388 59 89. Primera consulta gratis, sin compromiso." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://www.sanperhouse.com/contacto/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>*{box-sizing:border-box;}body{margin:0;background:#ffffff;color:#2c3033;font-family:'Source Sans 3',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}a{color:#1c6cb5;}input,select,textarea{font-family:inherit;}</style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LegalService","name":"Sanperhouse — Contacto","url":"https://www.sanperhouse.com/contacto/","telephone":"+34913885989","email":"consultas@sanperhouse.com","image":"https://www.sanperhouse.com/assets/sanper-logo.png","areaServed":"Madrid","address":{"@type":"PostalAddress","streetAddress":"Calle Toledo, 107, 1º Centro","addressLocality":"Madrid","postalCode":"28005","addressCountry":"ES"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"10:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"16:30","closes":"19:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"10:00","closes":"14:00"}]}
+  </script>
+</helmet>
+
+<dc-import name="SiteHeader" active="contacto" page-title="Contacto" hint-size="100%,420px"></dc-import>
+
+<main style="font-family:'Source Sans 3',system-ui,sans-serif;">
+  <section style="padding:clamp(40px,6vw,64px) 20px;">
+    <div style="max-width:1180px;margin:0 auto;">
+      <h1 style="font-family:'Libre Franklin',sans-serif;color:#17568f;font-size:clamp(26px,4.4vw,42px);font-weight:800;margin:0 0 8px;">Contacta con nosotros</h1>
+      <p style="font-size:17.5px;line-height:1.7;color:#3a4650;margin:0 0 34px;">Sin ningún compromiso. Rellena el formulario y te llamamos, o escríbenos directamente.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:34px;align-items:start;">
+        <div>
+          <h2 style="font-family:'Libre Franklin',sans-serif;color:#1c6cb5;font-size:20px;margin:0 0 16px;">Solicita tu consulta gratuita</h2>
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#eaf6ee;border:1px solid #b7dcc4;border-radius:10px;padding:28px;">
+              <svg width="34" height="34" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7.5" stroke="#1b7a44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <h3 style="font-family:'Libre Franklin',sans-serif;color:#1b7a44;font-size:19px;margin:8px 0 6px;">¡Gracias, {{ nombre }}!</h3>
+              <p style="font-size:16px;line-height:1.6;color:#3a4650;margin:0 0 14px;">Hemos recibido tu solicitud. Un abogado de Sanperhouse se pondrá en contacto contigo lo antes posible.</p>
+              <button type="button" onClick="{{ reset }}" style="background:none;border:0;color:#1c6cb5;font-weight:700;cursor:pointer;padding:0;">Enviar otra consulta</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                <label style="display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3a4650;">Nombre *<input name="nombre" required="" value="{{ nombre }}" onInput="{{ onName }}" style="padding:11px 12px;border:1px solid #cdd7e0;border-radius:6px;font-size:15px;" /></label>
+                <label style="display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3a4650;">Apellidos<input name="apellidos" style="padding:11px 12px;border:1px solid #cdd7e0;border-radius:6px;font-size:15px;" /></label>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                <label style="display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3a4650;">Email *<input name="email" type="email" required="" style="padding:11px 12px;border:1px solid #cdd7e0;border-radius:6px;font-size:15px;" /></label>
+                <label style="display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3a4650;">Teléfono<input name="telefono" type="tel" style="padding:11px 12px;border:1px solid #cdd7e0;border-radius:6px;font-size:15px;" /></label>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3a4650;">Tipo de servicio *
+                <select name="servicio" required="" style="padding:11px 12px;border:1px solid #cdd7e0;border-radius:6px;font-size:15px;background:#fff;">
+                  <option value="">— elige una opción —</option>
+                  <option>Servicios jurídicos</option>
+                  <option>Administración de fincas</option>
+                  <option>Igualas</option>
+                  <option>Concurso / Segunda oportunidad</option>
+                  <option>Fiscal, laboral o contable</option>
+                  <option>Seguros</option>
+                </select>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#3a4650;">Mensaje<textarea name="mensaje" rows="4" style="padding:11px 12px;border:1px solid #cdd7e0;border-radius:6px;font-size:15px;resize:vertical;"></textarea></label>
+              <label style="display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:#5b636b;line-height:1.5;"><input type="checkbox" required="" style="margin-top:3px;" /><span>He leído y acepto el <a href="aviso-legal.dc.html">Aviso legal</a> y la política de privacidad.</span></label>
+              <button type="submit" style="margin-top:4px;padding:13px 20px;background:#f0a81e;color:#17568f;font-weight:700;font-size:16px;border:0;border-radius:6px;cursor:pointer;">Enviar solicitud</button>
+              <p style="font-size:12.5px;color:#8a949e;margin:0;">* Campos obligatorios</p>
+            </form>
+          </sc-if>
+        </div>
+
+        <div>
+          <div style="min-height:220px;margin-bottom:22px;"><dc-import name="Placeholder" label="Mapa — Calle Toledo 107, 28005 Madrid" hint-size="100%,220px"></dc-import></div>
+          <div style="background:#f4f7fa;border:1px solid #e4e9ee;border-radius:10px;padding:22px;">
+            <h2 style="font-family:'Libre Franklin',sans-serif;color:#1c6cb5;font-size:18px;margin:0 0 14px;">Nuestras oficinas</h2>
+            <p style="font-size:15.5px;line-height:1.6;margin:0 0 16px;color:#3a4650;"><strong style="color:#17568f;">Sede central</strong><br/>Calle Toledo, 107 – 1º Centro · 28005 Madrid<br/><a href="tel:+34913885989" style="text-decoration:none;">91 388 59 89</a> · <a href="mailto:consultas@sanperhouse.com">consultas@sanperhouse.com</a></p>
+            <div style="border-top:1px solid #e4e9ee;padding-top:14px;">
+              <strong style="color:#17568f;font-size:15px;">Horario</strong>
+              <p style="font-size:15px;line-height:1.6;margin:6px 0 0;color:#3a4650;">Lunes a Jueves: 10:00–14:00 y 16:30–19:30<br/>Viernes: 10:00–14:00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sent: false, nombre: '' };
+  renderVals() {
+    return {
+      sent: this.state.sent,
+      showForm: !this.state.sent,
+      nombre: this.state.nombre,
+      onName: (e) => this.setState({ nombre: e.target.value }),
+      submit: (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        this.setState({ sent: true, nombre: (fd.get('nombre') || '').toString().trim() || 'gracias' });
+      },
+      reset: () => this.setState({ sent: false, nombre: '' }),
+    };
+  }
+}
+</script>
+</body>
+</html>
