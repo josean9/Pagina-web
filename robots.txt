@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Avisolegal/
+
+Sitemap: https://www.sanperhouse.com/sitemap.xml
