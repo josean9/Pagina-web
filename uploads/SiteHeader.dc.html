@@ -58,20 +58,9 @@
       </sc-for>
     </div>
   </div>
-  <sc-if value="{{ hasCrumbs }}" hint-placeholder-val="{{ false }}">
-    <nav aria-label="Ruta de navegación" style="background:#ffffff;border-bottom:1px solid #e4e9ee;">
-      <div style="max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:7px;font-size:13px;">
-        <sc-for list="{{ crumbLinks }}" as="c" hint-placeholder-count="2">
-          <a href="{{ c.href }}" style="color:#1c6cb5;text-decoration:none;font-weight:600;">{{ c.label }}</a>
-          <span style="color:#aeb9c3;">›</span>
-        </sc-for>
-        <span style="color:#5b636b;font-weight:600;">{{ currentLabel }}</span>
-      </div>
-    </nav>
-  </sc-if>
 </header>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:420},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;firma&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pageTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;crumb&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;crumbParent&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;crumbParentHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:420},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;firma&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pageTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { isMobile: false, open: false };
   componentDidMount() {
@@ -109,26 +98,6 @@ class Component extends DCLogic {
       const on = it.key === active;
       return { ...it, style: 'font-size:14px;font-weight:600;text-decoration:none;color:' + (on ? '#1c6cb5' : '#5b636b') + ';' + (on ? 'text-decoration:underline;text-underline-offset:4px;text-decoration-color:#f0a81e;' : '') };
     });
-    const crumbMap = {
-      servicios:{label:'Servicios'},
-      abogados:{label:'Abogados'},
-      admin:{label:'Administrador de Fincas'},
-      fincas24:{label:'Fincas 24 Horas',parent:'Administrador de Fincas',parentHref:'administrador-fincas.dc.html'},
-      contacto:{label:'Contacto'},
-      razones:{label:'Razones para elegirnos'},
-      equipo:{label:'Nuestro equipo'},
-      unete:{label:'Únete a nosotros'},
-      blog:{label:'Blog'},
-    };
-    const cm = crumbMap[active] || {};
-    const curLabel = this.props.crumb || cm.label || '';
-    const pLabel = this.props.crumbParent || cm.parent || '';
-    const pHref = this.props.crumbParentHref || cm.parentHref || '';
-    const crumbLinks = [];
-    if (curLabel) {
-      crumbLinks.push({ label: 'Inicio', href: 'index.dc.html' });
-      if (pLabel) crumbLinks.push({ label: pLabel, href: pHref });
-    }
     return {
       isMobile: this.state.isMobile,
       isDesktop: !this.state.isMobile,
@@ -136,9 +105,6 @@ class Component extends DCLogic {
       toggle: () => this.setState(s => ({ open: !s.open })),
       navItems, subItems,
       pageTitle: this.props.pageTitle || '',
-      hasCrumbs: !!curLabel,
-      crumbLinks,
-      currentLabel: curLabel,
     };
   }
 }
