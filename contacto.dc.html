@@ -121,25 +121,9 @@ class Component extends DCLogic {
       submit: (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        const nombre = (fd.get('nombre') || '').toString().trim();
-
-        const datos = {
-          nombre: nombre,
-          apellidos: fd.get('apellidos'),
-          email: fd.get('email'),
-          telefono: fd.get('telefono'),
-          servicio: fd.get('servicio'),
-          mensaje: fd.get('mensaje'),
-        };
-
-        fetch('/api/contacto', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(datos),
-        }).catch((err) => console.error('Error enviando datos:', err));
-
-        this.setState({ sent: true, nombre: nombre || 'gracias' });
+        this.setState({ sent: true, nombre: (fd.get('nombre') || '').toString().trim() || 'gracias' });
       },
+      reset: () => this.setState({ sent: false, nombre: '' }),
     };
   }
 }

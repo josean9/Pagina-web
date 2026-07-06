@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @keyframes sph-chat-in{from{opacity:0;transform:translateY(14px) scale(0.98);}to{opacity:1;transform:translateY(0) scale(1);}}
+    @keyframes sph-chat-pulse{0%{box-shadow:0 0 0 0 rgba(240,168,30,0.55);}70%{box-shadow:0 0 0 12px rgba(240,168,30,0);}100%{box-shadow:0 0 0 0 rgba(240,168,30,0);}}
+  </style>
+</helmet>
+
+<div style="position:fixed;right:22px;bottom:22px;z-index:2147483000;display:flex;flex-direction:column;align-items:flex-end;gap:14px;font-family:'Source Sans 3',system-ui,sans-serif;pointer-events:none;">
+
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="Chat con Sanperhouse" style="pointer-events:auto;width:min(374px,calc(100vw - 32px));height:min(544px,calc(100vh - 120px));background:#ffffff;border:1px solid #e4e9ee;border-radius:16px;box-shadow:0 22px 60px rgba(18,50,79,0.30);display:flex;flex-direction:column;overflow:hidden;animation:sph-chat-in 0.22s ease;">
+
+      <div style="background:#17568f;background-image:linear-gradient(120deg,#17568f,#1c6cb5);padding:15px 16px;display:flex;align-items:center;gap:12px;">
+        <div style="width:40px;height:40px;flex:0 0 auto;border-radius:50%;background:rgba(255,255,255,0.16);display:flex;align-items:center;justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11.4c0 3.53-3.58 6.4-8 6.4-1.03 0-2.01-.16-2.9-.44L4 19l1.2-3.16C4.44 14.75 4 13.14 4 11.4 4 7.87 7.58 5 12 5s8 2.87 8 6.4Z" stroke="#ffffff" stroke-width="1.7" stroke-linejoin="round"/><circle cx="9" cy="11.4" r="1.05" fill="#ffffff"/><circle cx="12" cy="11.4" r="1.05" fill="#ffffff"/><circle cx="15" cy="11.4" r="1.05" fill="#ffffff"/></svg>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Libre Franklin',sans-serif;color:#ffffff;font-weight:700;font-size:16px;line-height:1.2;">Sanperhouse</div>
+          <div style="display:flex;align-items:center;gap:6px;color:#cfe0f0;font-size:12.5px;margin-top:2px;"><span style="width:8px;height:8px;border-radius:50%;background:#3ed17e;display:inline-block;"></span>Normalmente respondemos enseguida</div>
+        </div>
+        <button type="button" aria-label="Cerrar chat" onClick="{{ closeChat }}" style="width:34px;height:34px;flex:0 0 auto;border:0;background:rgba(255,255,255,0.14);border-radius:8px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="background:rgba(255,255,255,0.26);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div ref="{{ msgRef }}" style="flex:1;overflow-y:auto;padding:18px 16px;background:#f4f7fa;display:flex;flex-direction:column;gap:11px;">
+        <sc-for list="{{ messages }}" as="msg" hint-placeholder-count="1">
+          <div style="{{ msg.rowStyle }}">
+            <div style="{{ msg.bubbleStyle }}">{{ msg.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <form onSubmit="{{ send }}" style="display:flex;align-items:flex-end;gap:8px;padding:11px 12px;border-top:1px solid #e4e9ee;background:#ffffff;">
+        <input aria-label="Escribe tu mensaje" value="{{ input }}" onInput="{{ onInput }}" placeholder="Escribe tu mensaje…" autoComplete="off" style="flex:1;min-width:0;padding:11px 13px;border:1px solid #cdd7e0;border-radius:10px;font-size:15px;font-family:inherit;color:#2c3033;outline:none;" style-focus="border-color:#1c6cb5;" />
+        <button type="submit" aria-label="Enviar mensaje" style="width:44px;height:44px;flex:0 0 auto;border:0;border-radius:10px;background:#f0a81e;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="background:#e09a12;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6" stroke="#17568f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </sc-if>
+
+  <button type="button" aria-label="{{ launcherLabel }}" onClick="{{ toggle }}" style="{{ launcherStyle }}" style-hover="filter:brightness(1.06);">
+    <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </sc-if>
+    <sc-if value="{{ closed }}" hint-placeholder-val="{{ true }}">
+      <svg width="27" height="27" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11.4c0 3.53-3.58 6.4-8 6.4-1.03 0-2.01-.16-2.9-.44L4 19l1.2-3.16C4.44 14.75 4 13.14 4 11.4 4 7.87 7.58 5 12 5s8 2.87 8 6.4Z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="9" cy="11.4" r="1.15" fill="#ffffff"/><circle cx="12" cy="11.4" r="1.15" fill="#ffffff"/><circle cx="15" cy="11.4" r="1.15" fill="#ffffff"/></svg>
+      <span style="font-family:'Libre Franklin',sans-serif;font-weight:700;font-size:15px;color:#ffffff;white-space:nowrap;">¿Necesitas ayuda?</span>
+    </sc-if>
+  </button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.msgRef = React.createRef();
+    this.state = {
+      open: false,
+      input: '',
+      messages: [
+        { from: 'bot', text: '¡Hola! Bienvenido a Sanperhouse. ¿En qué podemos ayudarte? Cuéntanos tu caso y te orientamos sin compromiso.' },
+      ],
+    };
+  }
+
+  componentDidUpdate() {
+    const el = this.msgRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+
+  pushBot(text) {
+    this.setState((s) => ({ messages: [...s.messages, { from: 'bot', text }] }));
+  }
+
+  renderVals() {
+    const open = this.state.open;
+
+    const launcherStyle = [
+      'pointer-events:auto',
+      'display:flex', 'align-items:center', 'gap:10px',
+      'border:0', 'cursor:pointer',
+      'font-family:inherit',
+      "background:#17568f", "background-image:linear-gradient(120deg,#17568f,#1c6cb5)",
+      'color:#ffffff',
+      'box-shadow:0 10px 26px rgba(23,86,143,0.42)',
+      open ? 'width:56px;height:56px;padding:0;justify-content:center;border-radius:50%'
+           : 'height:56px;padding:0 22px 0 18px;border-radius:30px',
+      open ? '' : 'animation:sph-chat-pulse 2.6s ease-out 1.2s 3',
+    ].join(';');
+
+    const messages = this.state.messages.map((m) => {
+      const isUser = m.from === 'user';
+      return {
+        text: m.text,
+        rowStyle: 'display:flex;justify-content:' + (isUser ? 'flex-end' : 'flex-start') + ';',
+        bubbleStyle: [
+          'max-width:82%',
+          'padding:10px 13px',
+          'font-size:14.5px',
+          'line-height:1.5',
+          'white-space:pre-wrap',
+          'word-break:break-word',
+          isUser
+            ? 'background:#17568f;color:#ffffff;border-radius:14px 14px 4px 14px'
+            : 'background:#ffffff;color:#2c3033;border:1px solid #e4e9ee;border-radius:14px 14px 14px 4px',
+        ].join(';'),
+      };
+    });
+
+    return {
+      open,
+      closed: !open,
+      input: this.state.input,
+      messages,
+      msgRef: this.msgRef,
+      launcherStyle,
+      launcherLabel: open ? 'Cerrar chat' : 'Abrir chat de ayuda',
+      toggle: () => this.setState((s) => ({ open: !s.open })),
+      closeChat: () => this.setState({ open: false }),
+      onInput: (e) => this.setState({ input: e.target.value }),
+      send: (e) => {
+        if (e) e.preventDefault();
+        const text = (this.state.input || '').trim();
+        if (!text) return;
+
+        // Añade el mensaje del usuario al historial y limpia el input.
+        this.setState((s) => ({
+          messages: [...s.messages, { from: 'user', text }],
+          input: '',
+        }));
+
+        // ===================================================================
+        // INTEGRACIÓN CON EL AGENTE DE IA — sustituir este bloque placeholder.
+        // Aquí va la llamada real al backend/agente. Ejemplo:
+        //
+        //   fetch('/api/chat', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ mensaje: text, historial: this.state.messages }),
+        //   })
+        //     .then((r) => r.json())
+        //     .then((data) => this.pushBot(data.respuesta))
+        //     .catch(() => this.pushBot('Ahora mismo no podemos responder. Llámanos al 91 388 59 89.'));
+        //
+        // Mientras tanto, respuesta automática de cortesía:
+        // ===================================================================
+        setTimeout(() => {
+          this.pushBot('Gracias por tu mensaje. Un abogado de Sanperhouse te responderá lo antes posible. Si es urgente, llámanos al 91 388 59 89 o escríbenos a consultas@sanperhouse.com.');
+        }, 700);
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
