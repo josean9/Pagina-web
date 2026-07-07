@@ -65,13 +65,12 @@ export default async function handler(req, res) {
 
       if (pollData.type === 'complete') {
         const updates = pollData.updates || [];
-        const lastAssistantMsg = [...updates]
+        const chainSuccess = [...updates]
           .reverse()
-          .find((u) => u.content?.message?.role === 'assistant' || u.content?.role === 'assistant');
+          .find((u) => u.type === 'chain-success' && u.output?.output?.answer);
 
         respuestaTexto =
-          lastAssistantMsg?.content?.message?.content ||
-          lastAssistantMsg?.content?.content ||
+          chainSuccess?.output?.output?.answer ||
           'Gracias por tu mensaje, nuestro equipo lo revisará.';
         break;
       }
