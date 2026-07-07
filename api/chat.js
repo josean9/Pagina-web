@@ -30,7 +30,6 @@ export default async function handler(req, res) {
   if (conversation_id) payload.conversation_id = conversation_id;
 
   try {
-    // 1. Disparamos el agente — esto solo confirma que el trabajo ha empezado
     const triggerResponse = await fetch(`${baseUrl}/agents/trigger`, {
       method: 'POST',
       headers,
@@ -47,23 +46,24 @@ export default async function handler(req, res) {
     const newConversationId = triggerData.conversation_id || conversation_id;
 
     if (!studioId || !jobId) {
-      throw new Error('Respuesta de trigger sin studio_id/job_id');
+      throw new Error('Respuesta de trigger sin studio_id/job_id: ' + JSON.stringify(triggerData));
     }
 
-    // 2. Hacemos polling hasta que el agente termine (máximo ~20 segundos)
     const pollUrl = `${baseUrl}/studios/${studioId}/async_poll/${jobId}`;
     let respuestaTexto = null;
 
     for (let intento = 0; intento < 20; intento++) {
-      await new Promise((r) => setTimeout(r, 1000)); // espera 1 segundo entre intentos
+      await new Promise((r) => setTimeout(r, 1000));
 
       const pollResponse = await fetch(pollUrl, { headers });
       if (!pollResponse.ok) continue;
 
       const pollData = await pollResponse.json();
 
+      // LOG TEMPORAL DE DEPURACIÓN — quitar una vez confirmemos la estructura
+      console.log('POLL DATA COMPLETO:', JSON.stringify(pollData, null, 2));
+
       if (pollData.type === 'complete') {
-        // Buscamos el último mensaje del asistente en los updates
         const updates = pollData.updates || [];
         const lastAssistantMsg = [...updates]
           .reverse()
@@ -77,10 +77,10 @@ export default async function handler(req, res) {
       }
 
       if (pollData.type === 'failed') {
-        throw new Error('El agente falló al procesar el mensaje');
+        throw new Error('El agente falló al procesar el mensaje: ' + JSON.stringify(pollData));
       }
     }
-    console.log('POLL DATA COMPLETO:', JSON.stringify(pollData, null, 2));
+
     if (!respuestaTexto) {
       respuestaTexto = 'Estamos procesando tu consulta, dame un momento más o inténtalo de nuevo.';
     }
