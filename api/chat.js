@@ -80,7 +80,7 @@ export default async function handler(req, res) {
         throw new Error('El agente falló al procesar el mensaje');
       }
     }
-
+    console.log('POLL DATA COMPLETO:', JSON.stringify(pollData, null, 2));
     if (!respuestaTexto) {
       respuestaTexto = 'Estamos procesando tu consulta, dame un momento más o inténtalo de nuevo.';
     }
