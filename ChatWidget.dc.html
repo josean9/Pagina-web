@@ -70,6 +70,7 @@ class Component extends DCLogic {
     this.state = {
       open: false,
       input: '',
+      conversationId: null,
       messages: [
         { from: 'bot', text: '¡Hola! Bienvenido a Sanperhouse. ¿En qué podemos ayudarte? Cuéntanos tu caso y te orientamos sin compromiso.' },
       ],
@@ -142,24 +143,20 @@ class Component extends DCLogic {
           input: '',
         }));
 
-        // ===================================================================
-        // INTEGRACIÓN CON EL AGENTE DE IA — sustituir este bloque placeholder.
-        // Aquí va la llamada real al backend/agente. Ejemplo:
-        //
-        //   fetch('/api/chat', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ mensaje: text, historial: this.state.messages }),
-        //   })
-        //     .then((r) => r.json())
-        //     .then((data) => this.pushBot(data.respuesta))
-        //     .catch(() => this.pushBot('Ahora mismo no podemos responder. Llámanos al 91 388 59 89.'));
-        //
-        // Mientras tanto, respuesta automática de cortesía:
-        // ===================================================================
-        setTimeout(() => {
-          this.pushBot('Gracias por tu mensaje. Un abogado de Sanperhouse te responderá lo antes posible. Si es urgente, llámanos al 91 388 59 89 o escríbenos a consultas@sanperhouse.com.');
-        }, 700);
+        fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mensaje: text,
+            conversation_id: this.state.conversationId || null,
+          }),
+        })
+          .then((r) => r.json())
+          .then((data) => {
+            if (data.conversation_id) this.setState({ conversationId: data.conversation_id });
+            this.pushBot(data.respuesta);
+          })
+          .catch(() => this.pushBot('Ahora mismo no podemos responder. Llámanos al 91 388 59 89.'));
       },
     };
   }
