@@ -36,7 +36,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>*{box-sizing:border-box;}body{margin:0;background:#ffffff;color:#2c3033;font-family:'Source Sans 3',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}a{color:#1c6cb5;}input,select,textarea{font-family:inherit;}</style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LegalService","name":"Sanperhouse — Contacto","url":"https://www.sanperhouse.com/contacto/","telephone":"+34913885989","email":"consultas@sanperhouse.com","image":"assets/logo.png","areaServed":"Madrid","address":{"@type":"PostalAddress","streetAddress":"Calle Toledo, 107, 1º Centro","addressLocality":"Madrid","postalCode":"28005","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":40.4045,"longitude":-3.7099},"hasMap":"https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"10:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"16:30","closes":"19:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"10:00","closes":"14:00"}]}
+  {"@context":"https://schema.org","@type":"LegalService","name":"Sanperhouse — Contacto","url":"https://www.sanperhouse.com/contacto/","telephone":"+34913885989","email":"consultas@sanperhouse.com","image":"assets/logo.png","areaServed":["Madrid","Centro","La Latina","Lavapiés","Embajadores","Arganzuela","Palacio","Sol"],"address":{"@type":"PostalAddress","streetAddress":"Calle Toledo, 107, 1º Centro","addressLocality":"Madrid","postalCode":"28005","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":40.4045,"longitude":-3.7099},"hasMap":"https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"10:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"16:30","closes":"19:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"10:00","closes":"14:00"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.sanperhouse.com/"},{"@type":"ListItem","position":2,"name":"Contacto","item":"https://www.sanperhouse.com/contacto/"}]}
@@ -95,7 +95,7 @@
           <div style="margin-bottom:22px;border-radius:10px;overflow:hidden;border:1px solid #e4e9ee;line-height:0;"><iframe title="Mapa de Sanperhouse — Calle Toledo 107, 28005 Madrid" src="https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid&output=embed" width="100%" height="240" style="border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
           <div style="background:#f4f7fa;border:1px solid #e4e9ee;border-radius:10px;padding:22px;">
             <h2 style="font-family:'Libre Franklin',sans-serif;color:#1c6cb5;font-size:18px;margin:0 0 14px;">Nuestras oficinas</h2>
-            <p style="font-size:15.5px;line-height:1.6;margin:0 0 16px;color:#3a4650;"><strong style="color:#17568f;">Sede central</strong><br/>Calle Toledo, 107 – 1º Centro · 28005 Madrid<br/><a href="tel:+34913885989" style="text-decoration:none;">91 388 59 89</a> · <a href="mailto:consultas@sanperhouse.com">consultas@sanperhouse.com</a></p>
+            <p style="font-size:15.5px;line-height:1.6;margin:0 0 16px;color:#3a4650;"><strong style="color:#17568f;">Sede central</strong><br/>Calle Toledo, 107 – 1º Centro · 28005 Madrid<br/><a href="tel:+34913885989" style="text-decoration:none;">91 388 59 89</a> · <a href="/cdn-cgi/l/email-protection#f1929e9f82849d859082b182909f819483999e848294df929e9c"><span class="__cf_email__" data-cfemail="63000c0d10160f1702102310020d1306110b0c1610064d000c0e">[email&#160;protected]</span></a></p>
             <div style="border-top:1px solid #e4e9ee;padding-top:14px;">
               <strong style="color:#17568f;font-size:15px;">Horario</strong>
               <p style="font-size:15px;line-height:1.6;margin:6px 0 0;color:#3a4650;">Lunes a Jueves: 10:00–14:00 y 16:30–19:30<br/>Viernes: 10:00–14:00</p>
@@ -109,7 +109,7 @@
 
 <dc-import name="SiteFooter" hide-cta="true" hint-size="100%,420px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { sent: false, nombre: '' };
   renderVals() {
@@ -121,24 +121,7 @@ class Component extends DCLogic {
       submit: (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        const nombre = (fd.get('nombre') || '').toString().trim();
-
-        const datos = {
-          nombre: nombre,
-          apellidos: fd.get('apellidos'),
-          email: fd.get('email'),
-          telefono: fd.get('telefono'),
-          servicio: fd.get('servicio'),
-          mensaje: fd.get('mensaje'),
-        };
-
-        fetch('/api/contacto', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(datos),
-        }).catch((err) => console.error('Error enviando datos:', err));
-
-        this.setState({ sent: true, nombre: nombre || 'gracias' });
+        this.setState({ sent: true, nombre: (fd.get('nombre') || '').toString().trim() || 'gracias' });
       },
       reset: () => this.setState({ sent: false, nombre: '' }),
     };
