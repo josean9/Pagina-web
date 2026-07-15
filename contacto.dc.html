@@ -11,13 +11,13 @@
   <title>Contacto | Abogados y Administrador de Fincas en Madrid | Sanperhouse</title>
   <meta name="description" content="Contacta con Sanperhouse en Madrid: Calle Toledo 107, 28005. Teléfono 91 388 59 89. Primera consulta gratis, sin compromiso." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="canonical" href="https://www.sanperhouse.com/contacto/" />
+  <link rel="canonical" href="https://www.sanperhouse.com/contacto" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Sanperhouse" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:title" content="Contacto | Abogados y Administrador de Fincas en Madrid | Sanperhouse" />
   <meta property="og:description" content="Contacta con Sanperhouse en Madrid: Calle Toledo 107, 28005. Teléfono 91 388 59 89. Primera consulta gratis, sin compromiso." />
-  <meta property="og:url" content="https://www.sanperhouse.com/contacto/" />
+  <meta property="og:url" content="https://www.sanperhouse.com/contacto" />
   <meta property="og:image" content="https://www.sanperhouse.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -36,10 +36,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>*{box-sizing:border-box;}body{margin:0;background:#ffffff;color:#2c3033;font-family:'Source Sans 3',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}a{color:#1c6cb5;}input,select,textarea{font-family:inherit;}</style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LegalService","name":"Sanperhouse — Contacto","url":"https://www.sanperhouse.com/contacto/","telephone":"+34913885989","email":"consultas@sanperhouse.com","image":"assets/logo.png","areaServed":["Madrid","Centro","La Latina","Lavapiés","Embajadores","Arganzuela","Palacio","Sol"],"address":{"@type":"PostalAddress","streetAddress":"Calle Toledo, 107, 1º Centro","addressLocality":"Madrid","postalCode":"28005","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":40.4045,"longitude":-3.7099},"hasMap":"https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"10:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"16:30","closes":"19:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"10:00","closes":"14:00"}]}
+  {"@context":"https://schema.org","@type":"LegalService","name":"Sanperhouse — Contacto","url":"https://www.sanperhouse.com/contacto","telephone":"+34913885989","email":"consultas@sanperhouse.com","image":"assets/logo.png","areaServed":["Madrid","Centro","La Latina","Lavapiés","Embajadores","Arganzuela","Palacio","Sol"],"address":{"@type":"PostalAddress","streetAddress":"Calle Toledo, 107, 1º Centro","addressLocality":"Madrid","postalCode":"28005","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":40.4045,"longitude":-3.7099},"hasMap":"https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"10:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"16:30","closes":"19:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"10:00","closes":"14:00"}]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.sanperhouse.com/"},{"@type":"ListItem","position":2,"name":"Contacto","item":"https://www.sanperhouse.com/contacto/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.sanperhouse.com/"},{"@type":"ListItem","position":2,"name":"Contacto","item":"https://www.sanperhouse.com/contacto"}]}
   </script>
 </helmet>
 
@@ -92,10 +92,21 @@
         </div>
 
         <div>
-          <div style="margin-bottom:22px;border-radius:10px;overflow:hidden;border:1px solid #e4e9ee;line-height:0;"><iframe title="Mapa de Sanperhouse — Calle Toledo 107, 28005 Madrid" src="https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid&output=embed" width="100%" height="240" style="border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+          <div style="margin-bottom:22px;border-radius:10px;overflow:hidden;border:1px solid #e4e9ee;">
+            <sc-if value="{{ mapClosed }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ openMap }}" aria-label="Ver mapa de la oficina en Google Maps" style="width:100%;height:240px;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#e9eef3;background-image:linear-gradient(135deg,#eef3f8,#dde6ef);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" stroke="#17568f" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" fill="#f0a81e"/></svg>
+                <span style="font-family:'Libre Franklin',sans-serif;color:#17568f;font-weight:700;font-size:16px;">Ver mapa</span>
+                <span style="color:#5b636b;font-size:13px;max-width:260px;text-align:center;line-height:1.45;">Calle Toledo, 107 · 28005 Madrid. Al abrir el mapa se cargará Google Maps.</span>
+              </button>
+            </sc-if>
+            <sc-if value="{{ mapOpen }}" hint-placeholder-val="{{ false }}">
+              <iframe title="Mapa de Sanperhouse — Calle Toledo 107, 28005 Madrid" src="https://www.google.com/maps?q=Calle%20Toledo%20107%2C%2028005%20Madrid&output=embed" width="100%" height="240" style="border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </sc-if>
+          </div>
           <div style="background:#f4f7fa;border:1px solid #e4e9ee;border-radius:10px;padding:22px;">
             <h2 style="font-family:'Libre Franklin',sans-serif;color:#1c6cb5;font-size:18px;margin:0 0 14px;">Nuestras oficinas</h2>
-            <p style="font-size:15.5px;line-height:1.6;margin:0 0 16px;color:#3a4650;"><strong style="color:#17568f;">Sede central</strong><br/>Calle Toledo, 107 – 1º Centro · 28005 Madrid<br/><a href="tel:+34913885989" style="text-decoration:none;">91 388 59 89</a> · <a href="/cdn-cgi/l/email-protection#f1929e9f82849d859082b182909f819483999e848294df929e9c"><span class="__cf_email__" data-cfemail="63000c0d10160f1702102310020d1306110b0c1610064d000c0e">[email&#160;protected]</span></a></p>
+            <p style="font-size:15.5px;line-height:1.6;margin:0 0 16px;color:#3a4650;"><strong style="color:#17568f;">Sede central</strong><br/>Calle Toledo, 107 – 1º Centro · 28005 Madrid<br/><a href="tel:+34913885989" style="text-decoration:none;">91 388 59 89</a> · <a href="/cdn-cgi/l/email-protection#95f6fafbe6e0f9e1f4e6d5e6f4fbe5f0e7fdfae0e6f0bbf6faf8"><span class="__cf_email__" data-cfemail="23404c4d50564f5742506350424d5346514b4c5650460d404c4e">[email&#160;protected]</span></a></p>
             <div style="border-top:1px solid #e4e9ee;padding-top:14px;">
               <strong style="color:#17568f;font-size:15px;">Horario</strong>
               <p style="font-size:15px;line-height:1.6;margin:6px 0 0;color:#3a4650;">Lunes a Jueves: 10:00–14:00 y 16:30–19:30<br/>Viernes: 10:00–14:00</p>
@@ -111,12 +122,15 @@
 </x-dc>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { sent: false, nombre: '' };
+  state = { sent: false, nombre: '', mapOpen: false };
   renderVals() {
     return {
       sent: this.state.sent,
       showForm: !this.state.sent,
       nombre: this.state.nombre,
+      mapOpen: this.state.mapOpen,
+      mapClosed: !this.state.mapOpen,
+      openMap: () => this.setState({ mapOpen: true }),
       onName: (e) => this.setState({ nombre: e.target.value }),
       submit: (e) => {
         e.preventDefault();
